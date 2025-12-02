@@ -31,6 +31,7 @@ This launcher provides easy control over starting, stopping, restarting, and mon
 Make sure both `launcher_gui.py` and `setup.bat` are in the **root folder of your server**, next to the `.exe` files:
 
 ```
+
 DIR\server
 │ xi_connect.exe
 │ xi_map.exe
@@ -57,6 +58,15 @@ Double-click `setup.bat`. This will:
 
 ---
 
+## Screenshot
+
+
+![Launcher Screenshot](https://github.com/user-attachments/assets/3004a369-be19-4adb-817d-c35097f3436a)
+
+*Example of the LandSandBoat Server Launcher interface.* 
+
+---
+
 ## Notes
 
 - The launcher does **not auto-start executables** on launch; you must manually start them  
@@ -77,3 +87,4 @@ Double-click `setup.bat`. This will:
 
 This project is licensed under the **MIT License**.  
 Use, modify, and distribute freely.
+```
