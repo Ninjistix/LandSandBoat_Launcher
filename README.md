@@ -87,4 +87,3 @@ Double-click `setup.bat`. This will:
 
 This project is licensed under the **MIT License**.  
 Use, modify, and distribute freely.
-```
