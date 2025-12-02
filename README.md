@@ -1,89 +1,113 @@
 # LandSandBoat Server Launcher
 
-A simple **Python Tkinter GUI** to manage the LandSandBoat private server executables.  
+A simple **Python Tkinter GUI** to manage the LandSandBoat private server executables.
 
-This launcher provides easy control over starting, stopping, restarting, and monitoring the server processes.
+This launcher provides easy control over starting, stopping, restarting, and monitoring the server processes, with improvements for better organization and usability.
 
 ---
 
 ## Features
 
-- **Detects server executables automatically** in the same folder:
+- **Auto-detect server executables** located in the server root folder:
   - `xi_connect.exe`
   - `xi_map.exe`
   - `xi_search.exe`
   - `xi_world.exe`
 - **Start / Stop / Restart** each executable individually
 - **Start ALL / Stop ALL** with a single click
-- **Auto-Restart option** per executable if it crashes
+- **Auto-Restart option** for each executable if it crashes (configurable)
 - **Process status monitoring** (Running / Stopped)
-- **Persistent settings** saved in `launcher_config.json`
+- **Persistent GUI window size/position** saved across sessions
 - **Logs** all actions and errors to:
-  - `launcher_gui_log.txt`  
-  - `launcher_gui_error.txt`  
+  - `tools/launcher_gui_log.txt`  
+  - `tools/launcher_gui_error.txt`
+- **Configuration** stored in `tools/launcher_config.json`
 
 ---
 
-## Setup & Usage
+## Folder Structure & Setup
 
-1. **Place the launcher files in your server folder**  
+1. **Place the launcher files inside the `tools` folder** within your server directory:
 
-Make sure both `launcher_gui.py` and `setup.bat` are in the **root folder of your server**, next to the `.exe` files:
+```
+your_server_directory/
+│
+├── xi_connect.exe
+├── xi_map.exe
+├── xi_search.exe
+├── xi_world.exe
+│
+└── tools/
+    ├── launcher_gui.pyw
+    ├── requirements.txt  (add `psutil` at the bottom if not present)
 
 ```
 
-DIR\server
-│ xi_connect.exe
-│ xi_map.exe
-│ xi_search.exe
-│ xi_world.exe
-│ launcher_gui.py
-│ setup.bat
+2. **Install dependencies**
+
+- Open your command prompt or terminal.
+- Run the following command from your server directory:
 
 ```
+pip install -r tools/requirements.txt
+```
 
-2. **Run the setup batch file**  
+*Note:* To ensure `psutil` is installed, add `psutil` at the bottom of your existing `requirements.txt`.
 
-Double-click `setup.bat`. This will:
+3. **Run the launcher**
 
-- Install Python dependencies automatically (e.g., `psutil`)  
-- Launch the Python GUI (`launcher_gui.pyw`) after setup  
+- Launch the GUI with:
 
-3. **Using the launcher**  
-
-- Start the server by clicking **Start** for individual executables or **Start ALL**  
-- Stop the server by clicking **Stop** for individual executables or **Stop ALL**  
-- Toggle **Auto-Restart** for any executable to automatically relaunch it if it crashes  
-- Monitor each executable's status directly in the GUI
+```
+pythonw tools/launcher_gui.pyw
+```
 
 ---
 
-## Screenshot
+## How It Works & Changes
 
+### Path Handling
+- The script dynamically determines its location (`TOOLS_DIR`) and the server root directory (`SERVER_ROOT`).
+- Executable paths are constructed relative to the server root, allowing flexible placement of the launcher inside the `tools` folder.
 
-![Launcher Screenshot](https://github.com/user-attachments/assets/3004a369-be19-4adb-817d-c35097f3436a)
+### Window Geometry Persistence
+- The GUI window size and position are saved automatically in `launcher_config.json` upon resize or move, and restored on startup.
 
-*Example of the LandSandBoat Server Launcher interface.* 
+### Process Launching
+- Server processes are started using `cmd /c start` within the server root directory, ensuring proper DLL/resource loading.
+
+### Logging & Error Handling
+- All logs include timestamps.
+- Errors during logging or process management are captured and logged for easier debugging.
+
+### User Interface
+- The GUI layout is similar but now supports the new folder structure.
+- Status indicators, auto-restart toggles, and control buttons are maintained.
 
 ---
 
-## Notes
+## Dependencies
 
-- The launcher does **not auto-start executables** on launch; you must manually start them  
-- Settings (Auto-Restart) are saved automatically in `launcher_config.json`  
-- Logs are written in the same folder as the launcher for debugging and monitoring
+- Python 3.8+
+- Install dependencies with:
+
+```
+pip install -r tools/requirements.txt
+```
 
 ---
 
-## Requirements
+## Screenshots
 
-- **Python 3.8+**  
-- **psutil** (`pip install psutil` or `py -3 -m pip install psutil`)  
-- Tkinter (usually included with Python)
+*(Screenshot of the GUI window)*
+
+> *A screenshot showing the main launcher window with server statuses, control buttons, and auto-restart toggles.*
+
+*<img width="721" height="352" alt="image" src="https://github.com/user-attachments/assets/038448a2-8fd9-49ae-88ad-bd4818cb05f1" />*
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License**.  
-Use, modify, and distribute freely.
+This project is licensed under the **GNU General Public License v3.0**.  
+See the [LICENSE](LICENSE) file for details.
