@@ -39,20 +39,27 @@ your_server_directory/
 │
 └── tools/
     ├── launcher_gui.pyw
-    ├── requirements.txt  (add `psutil` at the bottom if not present)
+    └── requirements.txt  (add `psutil` at the bottom if not present)
 
 ```
 
 2. **Install dependencies**
 
-- Open your command prompt or terminal.
-- Run the following command from your server directory:
+- **Option A:** If you prefer not to modify `requirements.txt`:
+  
+  - Manually install `psutil` by running:
 
-```
-pip install -r tools/requirements.txt
-```
+  ```
+  pip install psutil
+  ```
 
-*Note:* To ensure `psutil` is installed, add `psutil` at the bottom of your existing `requirements.txt`.
+- **Option B:** Or, install all dependencies listed in `requirements.txt` with:
+
+  ```
+  pip install -r tools/requirements.txt
+  ```
+
+*Note:* If `psutil` is not already in `requirements.txt`, ensure you add it there for easier setup in future.
 
 3. **Run the launcher**
 
@@ -91,9 +98,11 @@ pythonw tools/launcher_gui.pyw
 - Python 3.8+
 - Install dependencies with:
 
-```
+```bash
 pip install -r tools/requirements.txt
 ```
+
+*(or install `psutil` manually with `pip install psutil`)*
 
 ---
 
@@ -103,7 +112,7 @@ pip install -r tools/requirements.txt
 
 > *A screenshot showing the main launcher window with server statuses, control buttons, and auto-restart toggles.*
 
-*<img width="721" height="352" alt="image" src="https://github.com/user-attachments/assets/038448a2-8fd9-49ae-88ad-bd4818cb05f1" />*
+*<img width="721" height="352" alt="image" src="https://github.com/user-attachments/assets/8b343b89-3c9a-46bb-b12b-20e244cddfa9" />*
 
 ---
 
